@@ -1,12 +1,12 @@
 # <a href="https://vickylai.com/call-me-sam/" target="_blank" rel="noopener">Call me Sam: a theme for Hugo</a>
 
-![Main page screenshot](https://github.com/hivickylai/hugo-theme-sam/blob/master/images/screenshot.png)
+![Main page screenshot](https://github.com/vickylai/hugo-theme-sam/blob/master/images/screenshot.png)
 
 Sam is a Simple and Minimalist theme for Hugo. It lets you categorize and showcase your content the way you want to.
 
 Focused on content and typography, the stylized index page is really just a list of navigation links that you can set in your `config.toml`. This versatile design is limited only by your imagination, as you can make it say anything you like. Here are some ideas.
 
-![Index page iterations.](https://github.com/hivickylai/hugo-theme-sam/blob/master/images/ideas.png)
+![Index page iterations.](https://github.com/vickylai/hugo-theme-sam/blob/master/images/ideas.png)
 
 Features:
 - Showcase content
@@ -18,7 +18,7 @@ Features:
 - Developer-approved
     - Syntax highlighting
     - Share-ready metadata set via `config.toml` (OpenGraph and Twitter Cards integration)
-    - Easy-to-navigate Sass files included
+    - Easy-to-navigate pug and Sass files included
 
 
 ## Quick start
@@ -28,7 +28,7 @@ Features:
 From the root of your Hugo site:
 ```sh
 $ cd themes
-$ git clone https://github.com/hivickylai/hugo-theme-sam.git sam
+$ git clone https://github.com/vickylai/hugo-theme-sam.git sam
 ```
 
 ### 2. Configure your site
@@ -80,8 +80,26 @@ To create a new post, run:
 $ hugo new posts/your-post-title.md
 ```
 
-## License
-This theme is released under the [Creative Commons Attribution 3.0 license.](https://github.com/hivickylai/hugo-theme-sam/blob/master/LICENSE.txt)
+## Editing the theme
+
+All the theme's `pug` and `sass` files are included. You can compile these to HTML and CSS respectively using the npm scripts included in `package.json`.
+
+Prerequisites:
+* Node.js and npm: https://www.npmjs.com/get-npm
+
+To install all dependencies:
+
+```
+$ npm install
+```
+
+Available commands are:
+
+* `npm run build:pug` compiles pug files to HTML
+* `npm run build:sass` compiles Sass files to compressed CSS
+* `npm run autoprefixer` autoprefixes the compiled CSS
+* `npm run build` does all the above
+* `npm watch` watches Sass files for changes and automatically recompiles and autoprefixes the CSS
 
 ## Contributing
 
