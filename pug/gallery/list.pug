@@ -5,7 +5,6 @@ body
         .section#content
             | {{ .Content }}
         |
-        | {{ if .Site.Params.clickablePhotos }}
         .grid
             |
             | {{ $name := .Site.Params.galleryFolder | default "images/"}}
@@ -17,32 +16,26 @@ body
             |
             | {{ $files := readDir $folder }}
             |
+            | {{ if .Site.Params.clickablePhotos }}
             | {{ range shuffle $files }}
             |
             div
+                |
                 a(href='{{ $src | absURL }}{{.Name }}')
                     img(src='{{ $src | absURL }}{{.Name }}')
             |
             | {{ end }}
-        |
-        | {{ else }}
-        .grid
-            |
-            | {{ $name := .Site.Params.galleryFolder | default "images/"}}
-            | {{ $path := "gallery/" }}
-            | {{ $content := "/content/" }}
-            | {{ $src := (print $path $name) }}
-            |
-            | {{ $folder := (print $content $path $name) }}
-            |
-            | {{ $files := readDir $folder }}
-            |
+            | {{ else }}
             | {{ range shuffle $files }}
             |
             div
+                |
                 img(src='{{ $src | absURL }}{{.Name }}')
+            |
             | {{ end }}
-        | {{ end }}
+            |
+            | {{ end }}
+        |
         | {{ if .Site.Params.mainMenu }}
         .section.bottom-menu
             hr
