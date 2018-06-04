@@ -1,11 +1,21 @@
 | {{ partial "head.html" . }}
 
 body
+    | 
+    link(rel='stylesheet' href='/justified_gallery/justifiedGallery.css')
+    script(src="/justified_gallery/jquery.justifiedGallery.js")
+    script.
+      $( document ).ready(function() {
+          $("#gallery").justifiedGallery({
+            rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
+            margins : {{ .Site.Params.galleryMargins | default 5}},
+          });
+        });
     .wrap
         .section#content
             | {{ .Content }}
         |
-        .grid
+        div#gallery
             |
             | {{ $name := .Site.Params.galleryFolder | default "images/"}}
             | {{ $path := "gallery/" }}

@@ -1,4 +1,9 @@
-{{ partial "head.html" . }}<body><div class="wrap"><div class="section" id="content">{{ .Content }}</div><div class="grid">
+{{ partial "head.html" . }}<body> <link rel="stylesheet" href="/justified_gallery/justifiedGallery.css"/><script src="/justified_gallery/jquery.justifiedGallery.js"></script><script>$( document ).ready(function() {
+    $("#gallery").justifiedGallery({
+      rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
+      margins : {{ .Site.Params.galleryMargins | default 5}},
+    });
+  });</script><div class="wrap"><div class="section" id="content">{{ .Content }}</div><div id="gallery">
 {{ $name := .Site.Params.galleryFolder | default "images/"}}
 {{ $path := "gallery/" }}
 {{ $content := "/content/" }}
