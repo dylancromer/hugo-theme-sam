@@ -1,8 +1,12 @@
-{{ partial "head.html" . }}<body> <link rel="stylesheet" href="/justified_gallery/justifiedGallery.css"/><script src="/justified_gallery/jquery.justifiedGallery.js"></script><script>$( document ).ready(function() {
+{{ partial "head.html" . }}<body> <script src="/js/jquery-migrate-1.4.1.min.js"></script><script src="/swipebox/js/jquery.swipebox.min.js"></script><link rel="stylesheet" href="/swipebox/css/swipebox.min.css"/><link rel="stylesheet" href="/justified_gallery/justifiedGallery.css"/><script src="/justified_gallery/jquery.justifiedGallery.js"></script><script>$( document ).ready(function() {
     $("#gallery").justifiedGallery({
       rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
       margins : {{ .Site.Params.galleryMargins | default 5}},
-    });
+      border : 0,
+    })
+    .on('jg.complete', function () {
+	    $('.galleryImg').swipebox();
+		});
   });</script><div class="wrap"><div class="section" id="content">{{ .Content }}</div><div id="gallery">
 {{ $name := .Site.Params.galleryFolder | default "images/"}}
 {{ $path := "gallery/" }}
@@ -15,7 +19,7 @@
 
 {{ if .Site.Params.clickablePhotos }}
 {{ range shuffle $files }}
-<div><a href="{{ $src | absURL }}{{.Name }}"><img src="{{ $src | absURL }}{{.Name }}"/></a></div>
+<div><a class="galleryImg" href="{{ $src | absURL }}{{.Name }}"><img src="{{ $src | absURL }}{{.Name }}"/></a></div>
 {{ end }}
 {{ else }}
 {{ range shuffle $files }}

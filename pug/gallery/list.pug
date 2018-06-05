@@ -2,6 +2,10 @@
 
 body
     | 
+    script(src="/js/jquery-migrate-1.4.1.min.js")
+    script(src="/swipebox/js/jquery.swipebox.min.js")
+    link(rel="stylesheet" href="/swipebox/css/swipebox.min.css")
+    |
     link(rel='stylesheet' href='/justified_gallery/justifiedGallery.css')
     script(src="/justified_gallery/jquery.justifiedGallery.js")
     script.
@@ -9,7 +13,11 @@ body
           $("#gallery").justifiedGallery({
             rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
             margins : {{ .Site.Params.galleryMargins | default 5}},
-          });
+            border : 0,
+          })
+          .on('jg.complete', function () {
+      	    $('.galleryImg').swipebox();
+      		});
         });
     .wrap
         .section#content
@@ -31,7 +39,7 @@ body
             |
             div
                 |
-                a(href='{{ $src | absURL }}{{.Name }}')
+                a(href='{{ $src | absURL }}{{.Name }}' class="galleryImg")
                     img(src='{{ $src | absURL }}{{.Name }}')
             |
             | {{ end }}
