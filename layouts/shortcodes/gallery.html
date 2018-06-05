@@ -1,0 +1,39 @@
+
+{{ $options := (.Site.Params.galleryResizeOptions | default "150") }}
+
+<!-- Is requiered for swipebox and must be bevor any use of jquery -->
+<script src="/js/jquery-migrate-1.4.1.min.js"></script>
+
+<script src="/swipebox/js/jquery.swipebox.min.js"></script>
+<link rel="stylesheet" href="/swipebox/css/swipebox.min.css">
+
+<script src="/justified_gallery/jquery.justifiedGallery.js"></script>
+<link rel="stylesheet" href="/justified_gallery/justifiedGallery.css"/>
+
+<div id="gallery">
+	{{ range $original := .Page.Resources.ByType "image" }}
+		{{ $thumbnail := ($original.Resize $options)  }}
+		<div>
+				<a href="{{ $original.RelPermalink }}" class="galleryImg">
+					<img src="{{ $thumbnail.RelPermalink }}"/>
+				</a>
+		</div>
+	{{ end }}
+</div>
+
+<script>
+	if (!jQuery) {
+	    alert("jquery is not loaded");
+	}
+
+	$( document ).ready(function() {
+    $("#gallery").justifiedGallery({
+      rowHeight : {{ .Site.Params.galleryRowHeight | default 150}},
+      margins : {{ .Site.Params.galleryMargins | default 5}},
+			border : 0,
+    })
+		.on('jg.complete', function () {
+	    $('.galleryImg').swipebox();
+		});
+  });
+</script>
