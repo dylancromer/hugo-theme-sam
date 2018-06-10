@@ -7,7 +7,7 @@
     .on('jg.complete', function () {
 	    $('.galleryImg').swipebox();
 		});
-  });</script><div class="wrap"><div class="section" id="content">{{ .Content }}</div><div id="gallery">
+  });</script><div class="wrap"><div class="section" id="content"><h1>{{ .Title }}</h1>{{ .Content }}</div><div id="gallery">
 {{ $name := .Site.Params.galleryFolder | default "images/"}}
 {{ $path := "gallery/" }}
 {{ $content := "/content/" }}
