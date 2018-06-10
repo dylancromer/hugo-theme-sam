@@ -1,5 +1,35 @@
 
-{{ $options := (.Site.Params.galleryResizeOptions | default "150") }}
+<!-- Need to use scratch because of go template limitations when
+asigning variables (see https://gohugo.io/functions/scratch) -->
+{{ $s := .Scratch}}
+{{ if .Get "match"}}
+	{{$s.Set "images" (.Page.Resources.Match (.Get "match")) }}
+{{ else }}
+	{{ $s.Set "images" (.Page.Resources.ByType "image") }}
+{{ end }}
+
+{{ if .Get "rowHeight"}}
+	{{$s.Set "rowHeight" (.Get "rowHeight") }}
+{{ else }}
+	{{ $s.Set "rowHeight" (.Site.Params.galleryRowHeight | default 150) }}
+{{ end }}
+
+{{ if .Get "margins"}}
+	{{$s.Set "margins" (.Get "margins") }}
+{{ else }}
+	{{ $s.Set "margins" (.Site.Params.galleryRowMargins | default 5) }}
+{{ end }}
+
+{{ if .Get "resizeOptions"}}
+	{{$s.Set "resizeOptions" (.Get "resizeOptions") }}
+{{ else }}
+	{{ $s.Set "resizeOptions" (.Site.Params.galleryResizeOptions | default "x150 q90 Lanczos") }}
+{{ end }}
+
+<!--
+Ordinal increases every time this shortcode is used in a document
+Ordinal: {{ .Ordinal}}
+-->
 
 <!-- Is requiered for swipebox and must be bevor any use of jquery -->
 <script src="/js/jquery-migrate-1.4.1.min.js"></script>
@@ -10,9 +40,11 @@
 <script src="/justified_gallery/jquery.justifiedGallery.js"></script>
 <link rel="stylesheet" href="/justified_gallery/justifiedGallery.css"/>
 
-<div id="gallery">
-	{{ range $original := .Page.Resources.ByType "image" }}
-		{{ $thumbnail := ($original.Resize $options)  }}
+{{ $galleryId := (printf "gallery_%v" .Ordinal)}}
+
+<div id="{{ $galleryId }}">
+	{{ range $original := $s.Get "images" }}
+		{{ $thumbnail := ($original.Resize ($s.Get "resizeOptions"))  }}
 		<div>
 				<a href="{{ $original.RelPermalink }}" class="galleryImg">
 					<img src="{{ $thumbnail.RelPermalink }}"/>
@@ -27,9 +59,9 @@
 	}
 
 	$( document ).ready(function() {
-    $("#gallery").justifiedGallery({
-      rowHeight : {{ .Site.Params.galleryRowHeight | default 150}},
-      margins : {{ .Site.Params.galleryMargins | default 5}},
+    $("#{{ $galleryId }}").justifiedGallery({
+      rowHeight : {{ $s.Get "rowHeight" }},
+      margins : {{ $s.Get "margins" }},
 			border : 0,
     })
 		.on('jg.complete', function () {
