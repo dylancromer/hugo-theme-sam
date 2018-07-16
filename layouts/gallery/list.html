@@ -19,11 +19,11 @@
 
 {{ if .Site.Params.clickablePhotos }}
 {{ range shuffle $files }}
-<div><a class="galleryImg" href="{{ $src | absURL }}{{.Name }}"><img src="{{ $src | absURL }}{{.Name }}"/></a></div>
+<div><a class="galleryImg" href="{{ $src | absURL }}{{.Name }}"><img src="{{ $src | absURL }}{{ .Name }}" alt="{{ .Name }}"/></a></div>
 {{ end }}
 {{ else }}
 {{ range shuffle $files }}
-<div><img src="{{ $src | absURL }}{{.Name }}"/></div>
+<div><img src="{{ $src | absURL }}{{ .Name }}" alt="{{ .Name }}"/></div>
 {{ end }}
 
 {{ end }}</div>

@@ -41,16 +41,14 @@ body
             div
                 |
                 a(href='{{ $src | absURL }}{{.Name }}' class="galleryImg")
-                    img(src='{{ $src | absURL }}{{.Name }}')
+                    img(src='{{ $src | absURL }}{{ .Name }}' alt='{{ .Name }}')
             |
             | {{ end }}
             | {{ else }}
             | {{ range shuffle $files }}
             |
             div
-                |
-                img(src='{{ $src | absURL }}{{.Name }}')
-            |
+                img(src='{{ $src | absURL }}{{ .Name }}' alt='{{ .Name }}')
             | {{ end }}
             |
             | {{ end }}
