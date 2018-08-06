@@ -16,15 +16,20 @@
 {{ $folder := (print $content $path $name) }}
 
 {{ $files := readDir $folder }}
+ 
+{{ $previewSubdirectory := .Site.Params.smallImagesSubfolder | default "small/"}}
+{{ $previewImagesEnabled := .Site.Params.smallPreviewImages }}
 
 {{ if .Site.Params.clickablePhotos }}
 {{ range shuffle $files }}
-<div><a class="galleryImg" href="{{ $src | absURL }}{{.Name }}"><img src="{{ $src | absURL }}{{ .Name }}" alt="{{ .Name }}"/></a></div>
+
+{{ if not .IsDir }}<div><a class="galleryImg" href="{{ $src | absURL }}{{.Name }}">{{ if $previewImagesEnabled}}<img src="{{ $src | absURL }}{{ $previewSubdirectory }}{{ .Name }}" alt="{{ .Name }}"/>{{ else }}<img src="{{ $src | absURL }}{{ .Name }}" alt="{{ .Name }}"/>{{ end }}</a></div>{{ end }}
+
 {{ end }}
 {{ else }}
 {{ range shuffle $files }}
-<div><img src="{{ $src | absURL }}{{ .Name }}" alt="{{ .Name }}"/></div>
-{{ end }}
 
-{{ end }}</div>
+{{ if not .IsDir }}<div><img src="{{ $src | absURL }}{{ .Name }}" alt="{{ .Name }}"/></div>{{ end }}
+
+{{ end }}</div>{{ end }}
 {{ if .Site.Params.mainMenu }}<div class="section bottom-menu">{{ partial "bottom_menu.html" (dict "Page" . "show_back_menu_item" false) }}</div>{{ end }}<div class="section footer">{{ partial "footer.html" . }}</div></div></body>

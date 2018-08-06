@@ -34,25 +34,34 @@ body
             | {{ $folder := (print $content $path $name) }}
             |
             | {{ $files := readDir $folder }}
+            | 
+            | {{ $previewSubdirectory := .Site.Params.smallImagesSubfolder | default "small/"}}
+            | {{ $previewImagesEnabled := .Site.Params.smallPreviewImages }}
             |
             | {{ if .Site.Params.clickablePhotos }}
             | {{ range shuffle $files }}
             |
+            | {{ if not .IsDir }}
             div
-                |
                 a(href='{{ $src | absURL }}{{.Name }}' class="galleryImg")
+                    | {{ if $previewImagesEnabled}}
+                    img(src='{{ $src | absURL }}{{ $previewSubdirectory }}{{ .Name }}' alt='{{ .Name }}')
+                    | {{ else }}
                     img(src='{{ $src | absURL }}{{ .Name }}' alt='{{ .Name }}')
+                    | {{ end }}
+            | {{ end }}
             |
             | {{ end }}
             | {{ else }}
             | {{ range shuffle $files }}
             |
+            | {{ if not .IsDir }}
             div
                 img(src='{{ $src | absURL }}{{ .Name }}' alt='{{ .Name }}')
             | {{ end }}
             |
             | {{ end }}
-        |
+        | {{ end }}
         | {{ if .Site.Params.mainMenu }}
         .section.bottom-menu
             | {{ partial "bottom_menu.html" (dict "Page" . "show_back_menu_item" false) }}
