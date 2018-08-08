@@ -1,0 +1,90 @@
+/* catamaran-100 - latin-ext_latin */
+@font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Catamaran Thin'), local('Catamaran-Thin'),
+         url('catamaran-v4-latin-ext_latin-100.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-100.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-200 - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Catamaran ExtraLight'), local('Catamaran-ExtraLight'),
+         url('catamaran-v4-latin-ext_latin-200.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-200.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-300 - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Catamaran Light'), local('Catamaran-Light'),
+         url('catamaran-v4-latin-ext_latin-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-regular - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Catamaran Regular'), local('Catamaran-Regular'),
+         url('catamaran-v4-latin-ext_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-500 - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Catamaran Medium'), local('Catamaran-Medium'),
+         url('catamaran-v4-latin-ext_latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-500.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-600 - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Catamaran SemiBold'), local('Catamaran-SemiBold'),
+         url('catamaran-v4-latin-ext_latin-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-700 - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Catamaran Bold'), local('Catamaran-Bold'),
+         url('catamaran-v4-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-800 - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 800;
+    src: local('Catamaran ExtraBold'), local('Catamaran-ExtraBold'),
+         url('catamaran-v4-latin-ext_latin-800.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
+  /* catamaran-900 - latin-ext_latin */
+  @font-face {
+    font-family: 'Catamaran';
+    font-style: normal;
+    font-weight: 900;
+    src: local('Catamaran Black'), local('Catamaran-Black'),
+         url('catamaran-v4-latin-ext_latin-900.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('catamaran-v4-latin-ext_latin-900.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  
