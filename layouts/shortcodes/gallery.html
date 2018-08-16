@@ -26,19 +26,23 @@ asigning variables (see https://gohugo.io/functions/scratch) -->
 	{{ $s.Set "resizeOptions" (.Site.Params.galleryResizeOptions | default "x150 q90 Lanczos") }}
 {{ end }}
 
+<!-- Load jquery-migrate, swipebox and justified_gallery only once per page -->
+{{ if not (.Page.Scratch.Get "galleryLoaded") }}
+  {{ .Page.Scratch.Set "galleryLoaded" true }}
+	<!-- Is requiered for swipebox and must be bevor any use of jquery -->
+	<script src="/js/jquery-migrate-1.4.1.min.js"></script>
+
+	<script src="/swipebox/js/jquery.swipebox.min.js"></script>
+	<link rel="stylesheet" href="/swipebox/css/swipebox.min.css">
+
+	<script src="/justified_gallery/jquery.justifiedGallery.js"></script>
+	<link rel="stylesheet" href="/justified_gallery/justifiedGallery.css"/>
+{{ end }}
+
 <!--
 Ordinal increases every time this shortcode is used in a document
 Ordinal: {{ .Ordinal}}
 -->
-
-<!-- Is requiered for swipebox and must be bevor any use of jquery -->
-<script src="/js/jquery-migrate-1.4.1.min.js"></script>
-
-<script src="/swipebox/js/jquery.swipebox.min.js"></script>
-<link rel="stylesheet" href="/swipebox/css/swipebox.min.css">
-
-<script src="/justified_gallery/jquery.justifiedGallery.js"></script>
-<link rel="stylesheet" href="/justified_gallery/justifiedGallery.css"/>
 
 {{ $galleryId := (printf "gallery_%v" .Ordinal)}}
 
