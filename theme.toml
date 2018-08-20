@@ -5,7 +5,7 @@ description = "Simple And Minimalist theme for Hugo."
 homepage = "https://github.com/vickylai/hugo-theme-sam"
 tags = ["clean", "simple", "blog", "portfolio", "flexbox", "css grid", "minimalist", "responsive", "syntax highlighting", "gallery", "starter"]
 features = ["responsive", "gallery"]
-min_version = "0.30"
+min_version = "0.47"
 
 [author]
   name = "Vicky Lai"
