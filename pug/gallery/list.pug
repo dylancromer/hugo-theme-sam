@@ -1,24 +1,25 @@
-| {{ partial "head.html" . }}
-
-body
-    | 
-    script(src="/js/jquery-migrate-1.4.1.min.js")
-    script(src="/swipebox/js/jquery.swipebox.min.js")
-    link(rel="stylesheet" href="/swipebox/css/swipebox.min.css")
-    |
-    link(rel='stylesheet' href='/justified_gallery/justifiedGallery.css')
-    script(src="/justified_gallery/jquery.justifiedGallery.js")
-    script.
-      $( document ).ready(function() {
-          $("#gallery").justifiedGallery({
-            rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
-            margins : {{ .Site.Params.galleryMargins | default 5}},
-            border : 0,
-          })
-          .on('jg.complete', function () {
-      	    $('.galleryImg').swipebox();
-      		});
+| {{ block "head_resources" . }}
+script(src="/js/jquery-migrate-1.4.1.min.js")
+script(src="/swipebox/js/jquery.swipebox.min.js")
+link(rel="stylesheet" href="/swipebox/css/swipebox.min.css")
+|
+link(rel='stylesheet' href='/justified_gallery/justifiedGallery.css')
+script(src="/justified_gallery/jquery.justifiedGallery.js")
+script.
+    $( document ).ready(function() {
+        $("#gallery").justifiedGallery({
+        rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
+        margins : {{ .Site.Params.galleryMargins | default 5}},
+        border : 0,
+        })
+        .on('jg.complete', function () {
+        $('.galleryImg').swipebox();
         });
+    });
+ | {{ end }}
+ |
+ |
+ | {{ define "section_content" }}
     .wrap
         .section#content
             h1 {{ .Title }}
@@ -68,3 +69,4 @@ body
         | {{ end }}
         .section.footer
             | {{ partial "footer.html" . }}
+| {{ end }}
