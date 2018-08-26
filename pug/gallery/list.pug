@@ -1,72 +1,66 @@
-| {{ block "head_resources" . }}
-script(src="/js/jquery-migrate-1.4.1.min.js")
-script(src="/swipebox/js/jquery.swipebox.min.js")
-link(rel="stylesheet" href="/swipebox/css/swipebox.min.css")
+| {{ define "head_resources" }}
+script(src="/shortcode-gallery/jquery-migrate-1.4.1.min.js")
 |
-link(rel='stylesheet' href='/justified_gallery/justifiedGallery.css')
-script(src="/justified_gallery/jquery.justifiedGallery.js")
+script(src="/shortcode-gallery/swipebox/js/jquery.swipebox.min.js")
+link(rel="stylesheet" href="/shortcode-gallery/swipebox/css/swipebox.min.css")
+|
+script(src="/shortcode-gallery/justified_gallery/jquery.justifiedGallery.min.js")
+link(rel='stylesheet' href='/shortcode-gallery/justified_gallery/justifiedGallery.min.css')
+|
 script.
     $( document ).ready(function() {
         $("#gallery").justifiedGallery({
-        rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
-        margins : {{ .Site.Params.galleryMargins | default 5}},
-        border : 0,
+            rowHeight : {{ .Site.Params.galleryRowHeight | default 200}},
+            margins : {{ .Site.Params.galleryMargins | default 5}},
+            border : 0,
         })
         .on('jg.complete', function () {
-        $('.galleryImg').swipebox();
+            $('.galleryImg').swipebox();
         });
     });
- | {{ end }}
- |
- |
- | {{ define "section_content" }}
-    .wrap
-        .section#content
-            h1 {{ .Title }}
-            | {{ .Content }}
-        |
-        div#gallery
-            |
-            | {{ $name := .Site.Params.galleryFolder | default "images/"}}
-            | {{ $path := "gallery/" }}
-            | {{ $content := "/content/" }}
-            | {{ $src := (print $path $name) }}
-            |
-            | {{ $folder := (print $content $path $name) }}
-            |
-            | {{ $files := readDir $folder }}
-            | 
-            | {{ $previewSubdirectory := .Site.Params.smallImagesSubfolder | default "small/"}}
-            | {{ $previewImagesEnabled := .Site.Params.smallPreviewImages }}
-            |
-            | {{ if .Site.Params.clickablePhotos }}
-            | {{ range shuffle $files }}
-            |
-            | {{ if not .IsDir }}
-            div
-                a(href='{{ $src | absURL }}{{.Name }}' class="galleryImg")
-                    | {{ if $previewImagesEnabled}}
-                    img(src='{{ $src | absURL }}{{ $previewSubdirectory }}{{ .Name }}' alt='{{ .Name }}')
-                    | {{ else }}
-                    img(src='{{ $src | absURL }}{{ .Name }}' alt='{{ .Name }}')
-                    | {{ end }}
-            | {{ end }}
-            |
-            | {{ end }}
-            | {{ else }}
-            | {{ range shuffle $files }}
-            |
-            | {{ if not .IsDir }}
-            div
-                img(src='{{ $src | absURL }}{{ .Name }}' alt='{{ .Name }}')
-            | {{ end }}
-            |
-            | {{ end }}
-        | {{ end }}
-        | {{ if .Site.Params.mainMenu }}
-        .section.bottom-menu
-            | {{ partial "bottom_menu.html" (dict "Page" . "show_back_menu_item" false) }}
-        | {{ end }}
-        .section.footer
-            | {{ partial "footer.html" . }}
+| {{ end }}
+|
+|
+| {{ define "section_content" }}
+.section#content
+    | {{ .Content }}
+    |
+    div#gallery
+                |
+                | {{ $name := .Site.Params.galleryFolder | default "images/"}}
+                | {{ $path := "gallery/" }}
+                | {{ $content := "/content/" }}
+                | {{ $src := (print $path $name) }}
+                |
+                | {{ $folder := (print $content $path $name) }}
+                |
+                | {{ $files := readDir $folder }}
+                | 
+                | {{ $previewSubdirectory := .Site.Params.smallImagesSubfolder | default "small/"}}
+                | {{ $previewImagesEnabled := .Site.Params.smallPreviewImages }}
+                |
+                | {{ if .Site.Params.clickablePhotos }}
+                | {{ range shuffle $files }}
+                |
+                | {{ if not .IsDir }}
+                div
+                    a(href='{{ $src | absURL }}{{.Name }}' class="galleryImg")
+                        | {{ if $previewImagesEnabled}}
+                        img(src='{{ $src | absURL }}{{ $previewSubdirectory }}{{ .Name }}')
+                        | {{ else }}
+                        img(src='{{ $src | absURL }}{{ .Name }}')
+                        | {{ end }}
+                | {{ end }}
+                |
+                | {{ end }}
+                | {{ else }}
+                | {{ range shuffle $files }}
+                |
+                | {{ if not .IsDir }}
+                div
+                    img(src='{{ $src | absURL }}{{ .Name }}')
+                | {{ end }}
+                |
+                | {{ end }}
+    | {{ end }}
 | {{ end }}
