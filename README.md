@@ -19,7 +19,7 @@ Focused on content and typography, the stylized index page is really just a list
 - Developer-approved
     - Syntax highlighting
     - Share-ready metadata set via `config.toml` (OpenGraph and Twitter Cards integration)
-    - Easy-to-navigate pug and Sass files included
+    - Easy-to-navigate Sass files included
 
 # Differences to vickylai's original version
 
@@ -57,7 +57,7 @@ Run:
 ```sh
 $ hugo new page.md
 ```
-Where `page` can be anything you like. A contact page, a bio, dates for your upcoming world tour... Anything!what I'd describe as line drawing, pretty whimsical and progressive illustration. 
+Where `page` can be anything you like. A contact page, a bio, dates for your upcoming world tour... Anything!
 
 ## 4. Design your main menu and index page
 
@@ -96,9 +96,42 @@ To create a new post, run:
 $ hugo new posts/your-post-title.md
 ```
 
+## Image gallery
+
+To create an image gallery, place all the files you want included in a folder within `/content/gallery/`. The exampleSite has this configured as `images/` but you can change the name of this folder in `config.toml` if you wish.
+
+```
+content/
+ └── gallery/
+    └── images/
+        ├── file_1.jpg
+        ├── file_2.jpg
+        └── file_3.jpg
+```
+
+In `config.toml`, you can set `smallPreviewImages` to `true` in order to use small sized thumbnails. Include those thumbnail files in your gallery image folder. In exampleSite, this looks like:
+
+```
+content/
+ └── gallery/
+    └── images/
+        │   └── small/
+        |       ├── file_1.jpg
+        |       ├── file_2.jpg
+        |       └── file_3.jpg
+        ├── file_1.jpg
+        ├── file_2.jpg
+        └── file_3.jpg
+```
+
+The thumbnails need to have the same filenames as the larger images they represent.
+
+That's it! Sam's gallery layout template will automagically build the page from your images.
+
+
 # Editing the theme
 
-All the theme's `pug` and `sass` files are included. You can compile these to HTML and CSS respectively using the npm scripts included in `package.json`.
+All the theme's Sass files are included. You can compile these to CSS using the npm scripts included in `package.json`.
 
 Prerequisites:
 * Node.js and npm: https://www.npmjs.com/get-npm
@@ -111,7 +144,6 @@ $ npm install
 
 Available commands are:
 
-* `npm run build:pug` compiles pug files to HTML
 * `npm run build:sass` compiles Sass files to compressed CSS
 * `npm run autoprefixer` autoprefixes the compiled CSS
 * `npm run build` does all the above
