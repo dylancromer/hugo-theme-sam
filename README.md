@@ -1,4 +1,4 @@
-<h1><a href="https://vickylai.com/call-me-sam/" target="_blank" rel="noopener">Call me Sam: a theme for Hugo</a></h1>
+<h1><a href="https://hugo-sam.netlify.com/" target="_blank" rel="noopener">Call me Sam: a theme for Hugo</a></h1>
 
 ![Main page screenshot](https://github.com/mfg92/hugo-theme-sam/blob/master/images/screenshot.png)
 
@@ -18,8 +18,8 @@ Focused on content and typography, the stylized index page is really just a list
     - Custom footer text
 - Developer-approved
     - Syntax highlighting
-    - Share-ready metadata set via `config.toml` (OpenGraph and Twitter Cards integration)
-    - Easy-to-navigate Sass files included
+    - Share-ready pages with [Open Graph](https://gohugo.io/templates/internal/#open-graph) and [Twitter](https://gohugo.io/templates/internal/#twitter-cards) metadata you can customize in `config.toml` and page front-matter
+    - Effortless use of Hugo Pipes to generate CSS from Sass files
 
 # Differences to vickylai's original version
 
@@ -98,7 +98,7 @@ $ hugo new posts/your-post-title.md
 
 ## Image gallery
 
-To create an image gallery, place all the files you want included in a folder within `/content/gallery/`. The exampleSite has this configured as `content/gallery/images/` but you can change the name of the "images" folder in `config.toml` if you wish.
+To create an image gallery, place all the files you want included in a folder called "images" (you can change the name of the "images" folder in `config.toml` if you wish). Place your "images" folder in a subfolder of `content/` with any name. The directory structure then looks like this:
 
 ```
 content/
@@ -110,7 +110,7 @@ content/
     └── _index.md
 ```
 
-The gallery title is defined in the front matter of `_index.md`. You can also optionally define the page URL using `url`:
+To automagically generate a gallery from the images, set `type: "gallery"` in the front-matter of `_index.md`. The gallery title is defined in the front-matter as well. You can also optionally define the page URL using `url`. Here is an example of a gallery's `_index.md`:
 
 ```
 ---
@@ -120,7 +120,25 @@ url: "/portrait-gallery"
 ---
 ```
 
-In order to create more than one gallery, create multiple folders in `content/` with this file structure and `type: "gallery"` defined in the `_index.md` front matter.
+In order to create more than one gallery, create multiple subfolders in `content/` with this file structure and `type: "gallery"` defined in the `_index.md` front matter. For example:
+
+
+```
+content/
+ | └── gallery/
+ |    └── images/
+ |    |   ├── file_1.jpg
+ |    |   ├── file_2.jpg
+ |    |   └── file_3.jpg
+ |    └── _index.md
+ |
+ └── portfolio/
+    └── images/
+    |   ├── file_1.jpg
+    |   ├── file_2.jpg
+    |   └── file_3.jpg
+    └── _index.md
+```
 
 In `config.toml`, you can set `smallPreviewImages` to `true` in order to use small sized thumbnails. Include those thumbnail files in your gallery image folder. In exampleSite, this looks like:
 
@@ -144,31 +162,15 @@ That's it! Sam's gallery layout template will automagically build the page from 
 
 # Editing the theme
 
-All the theme's Sass files are included. You can compile these to CSS using the npm scripts included in `package.json`.
-
-Prerequisites:
-* Node.js and npm: https://www.npmjs.com/get-npm
-
-To install all dependencies:
-
-```sh
-$ npm install
-```
-
-Available commands are:
-
-* `npm run build:sass` compiles Sass files to compressed CSS
-* `npm run autoprefixer` autoprefixes the compiled CSS
-* `npm run build` does all the above
-* `npm run watch` watches Sass files for changes and automatically recompiles and autoprefixes the CSS
+This theme uses [Hugo Pipes](https://gohugo.io/hugo-pipes/introduction/) to compile, autoprefix, and minify its CSS styles from the included Sass files. You can run the built-in server to preview the site as you make changes to the Sass files!
 
 # Contributing
 
 Pull requests for bug fixes and enhancements are welcome.
 
-__Thank you to:__ @paskal, @crownsedge, @jazzi, @hakamadare, @mfg92, @Hanzei, and @lx4r!
+Open source themes like this one would not be possible without some amazing __[contributors](https://github.com/victoriadotdev/hugo-theme-sam/graphs/contributors)__. Thank you!
 
 # License
-Copyright (C) 2018 Vicky Lai
+Copyright (C) 2018 Victoria Lai
 
 Licensed under [AGPL-3.0](https://github.com/mfg92/hugo-theme-sam/blob/master/LICENSE)
