@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 
+{{ if .GetParam "hasMath"}}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/contrib/auto-render.min.js"></script>
+{{ end }}
+
 <head>
     {{ block "head" . }}
     {{ partial "head.html" . }}
@@ -29,5 +35,9 @@
         {{ block "footer" . }}<div class="section footer">{{ partial "footer.html" . }}</div>{{ end }}
     </div>{{ end }}
 </body>
+
+{{ if .GetParam "hasMath"}}
+  <script>renderMathInElement(document.body);</script>
+{{ end }}
 
 </html>
